@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 数据库的一些连接信息，映射元数据也要在这里加载过来 -->
+
+<data>
+	<properties>
+		<property name="driverURL">jdbc:mysql://localhost:3306/attendance</property>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="userName">root</property>
+		<property name="password">lixing</property>
+		 <!-- <property name="password">server</property>-->
+<!-- 		<property name="userName">root</property>
+		<property name="password">123456</property> -->
+		<property name="maximum-connection-count">10</property>
+	</properties>
+	<mappers>
+		<mapper url="mapper/User.mapper.xml"></mapper>
+		<mapper url="mapper/Record.mapper.xml"></mapper>
+		<mapper url="mapper/LabInfo.mapper.xml"></mapper>
+		<mapper url="mapper/CourseInfo.mapper.xml"></mapper>
+	</mappers>
+</data>

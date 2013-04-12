@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+html {
+	background-color:rgb(161,110,45);
+}
+table
+{
+	border-collapse: collapse;
+}
+body
+{
+	color:rgb(87,60,26);
+	background-image:url("images/background.png");
+}
+
+.default {
+	width: 1024px;
+	margin: auto;
+}
+
+.top {
+	height: 122px;
+	margin-top:5px;
+	background-image: url("../imgs/logon_top.png");
+}
+
+.content {
+	height: 200px;
+}
+
+.bottom
+{	
+	height: 32px;
+	background-image: url("../imgs/logon_bottom.png");
+}
+.content .left {
+	width: 190px;
+	height: 510px;
+	/*padding-left:5px;*/
+	padding-top:2px;
+	background-image:url("images/left_index.png");
+}
+
+.content .right {
+	
+	height: 32px;
+	width: 834px;
+	background-color:rgb(227,216,210);
+	
+}
+
+.tab {
+	height: 32px;
+	width: 160px; 
+	background:transparent url("../imgs/logon_right_tab.png") no-repeat 0 0;
+	padding-top:12px;
+	padding-left:20px;
+}
+.right_content
+{
+	
+	width:803px;
+	border:1px solid rgb(201,178,147);
+	
+	background-color: rgb(229,245,223);
+	background: -webkit-linear-gradient(30deg, rgb(168,220,145) 0, rgb(229,245,223) 8%, rgb(229,245,223) 85%, rgb(168,220,145) 100%);
+	background: -moz-linear-gradient(30deg, rgb(168,220,145) 0, rgb(229,245,223) 8%, rgb(229,245,223) 85%, rgb(168,220,145) 100%);
+	background: -o-linear-gradient(30deg, rgb(168,220,145) 0, rgb(229,245,223) 8%, rgb(229,245,223) 85%, rgb(168,220,145) 100%);
+	
+}
+.right_bottom
+{
+	width: 803px;
+	height:31px;
+	background:rgb(227,216,210) url("../imgs/logon_right_bottom.png") no-repeat 0 0;
+}

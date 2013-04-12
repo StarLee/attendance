@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.cuc.daos.RecordDao">
+	<insert id="addNewRecord" parameterType="com.cuc.beans.Record">
+		insert into
+		Record(ID,UserID,LoginDate,LoginTime)
+		values(0,#{userID},'#{loginDate}','#{loginTime}')
+	</insert>
+	<select id="readUserAllRecord" resultType="com.cuc.beans.Record">
+		select ID as id,UserID
+		as userID,LoginDate as loginDate,LoginTime as loginTime from Record
+		where UserID=#{userID} and LoginDate='#{loginDate}' order by LoginTime ASC
+	</select>
+</mapper>

@@ -1,0 +1,59 @@
+@CHARSET "UTF-8";
+
+td
+{
+	height:31px;
+}
+.btn
+{
+	padding:7px 50px 7px 40px;
+	text-decoration:none;
+	color:rgb(87,60,26);
+	
+	background:-webkit-linear-gradient(top, rgba(201,178,147,0.5) 0%, rgba(182,141,89,0.5) 25%, rgba(227,216,210,0.5) 100%);
+	background:-moz-linear-gradient(top, rgba(201,178,147,0.5) 0%, rgba(182,141,89,0.5) 25%, rgba(227,216,210,0.5) 100%);
+	background:-o-linear-gradient(top, rgba(201,178,147,0.5) 0%, rgba(182,141,89,0.5) 25%, rgba(227,216,210,0.5) 100%);
+	
+	-webkit-box-shadow:0px 0px 0px 5px rgba(68,24,0,0.3);
+	-moz-box-shadow:0px 0px 0px 5px rgba(68,24,0,0.3);
+    box-shadow:0px 0px 5px 0px rgb(68,24,0);
+	
+}
+
+.btn:hover 
+{
+	font-weight:bold;
+	background:-webkit-linear-gradient(top, rgba(236,226,213,0.8) 0%, rgba(201,178,147,0.8) 70%, rgba(201,178,147,0.8) 80%, rgba(229,219,191,0.8) 100%);
+	background:-moz-linear-gradient(top, rgba(236,226,213,0.8) 0%, rgba(201,178,147,0.8) 70%, rgba(201,178,147,0.8) 80%, rgba(229,219,191,0.8) 100%);
+	background:-o-linear-gradient(top, rgba(236,226,213,0.8) 0%, rgba(201,178,147,0.8) 70%, rgba(201,178,147,0.8) 80%, rgba(229,219,191,0.8) 100%);
+	
+}
+
+.btn:active
+{
+	background:-webkit-linear-gradient(top, rgba(243,234,223,1) 0%, rgba(217,201,179,1) 100%);
+	background:-moz-linear-gradient(top, rgba(243,234,223,1) 0%, rgba(217,201,179,1) 100%);
+	background:-o-linear-gradient(top, rgba(243,234,223,1) 0%, rgba(217,201,179,1) 100%);
+}
+
+.left_btn
+{
+	width:180px;
+	height:31px;
+	filter:alpha(opacity=100 finishopacity=80 style=1 startx=0,starty=0,finishx=0,finishy=31) 
+		progid:DXImageTransform.Microsoft.gradient(startcolorstr=#c9b293,endcolorstr=#e3d8d2,gradientType=0);
+	-ms-filter:alpha(opacity=100 finishopacity=80 style=1 startx=0,starty=0,finishx=0,finishy=31) 
+		progid:DXImageTransform.Microsoft.gradient(startcolorstr=#c9b293,endcolorstr=#e3d8d2,gradientType=0);
+}
+
+.left_btn:hover
+{
+	filter:	progid:DXImageTransform.Microsoft.gradient(startcolorstr=#e3d8d2,endcolorstr=#c9b293,gradientType=0);
+	-ms-filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#e3d8d2,endcolorstr=#c9b293,gradientType=0);
+}
+
+.left_btn:active
+{
+	filter:	progid:DXImageTransform.Microsoft.gradient(startcolorstr=#c9b293,endcolorstr=#c9b293,gradientType=0);
+	-ms-filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#c9b293,endcolorstr=#c9b293,gradientType=0);	
+}

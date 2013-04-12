@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+	<results>
+		<resultType name="dispatcher"
+			class="com.develop.actions.forward.DispatchResult"></resultType>
+		<resultType name="redirect"
+			class="com.develop.actions.forward.RedirectResult"></resultType>
+		<resultType name="json" class="com.develop.actions.forward.JSONResult"></resultType>
+		<resultType name="redirectAction" class="com.develop.actions.forward.ActionResult"></resultType>
+	</results>
+	<interceptors>
+		<!-- 这个是最基本的过滤器 -->
+		<interceptor class="com.develop.actions.action.PreRequestInterceptor"></interceptor>
+		<interceptor class="com.develop.actions.action.DefaultInterceptor"></interceptor>
+
+		<!--还可以添加其它的过滤器 -->
+	</interceptors>
+	<actions name="test" namespace="/">
+		<!-- 登陆动作 -->
+		<action class="com.cuc.actions.Logon" name="Logon">
+			<page type="dispatcher" name="super">/logon/logon.jsp</page>
+			<page type="dispatcher" name="user">/logon/User/logon.jsp</page>
+			<page type="dispatcher" name="fail">/logonFail.jsp</page>
+		</action>
+		<action class="com.cuc.actions.Logout" name="Logout">
+			<page type="redirect" name="ok">/</page>
+		</action>
+		<!-- 首页 -->
+		<action class="com.cuc.actions.LogonIndex" name="Index">
+			<page type="dispatcher" name="ok">index.jsp</page>
+		</action>
+		<!-- 登陆时间 -->
+		<action class="com.cuc.actions.AddRecord" name="AddRecord">
+			<page type="dispatcher" name="addSuccess">/logon/logon.jsp</page>
+			<page type="dispatcher" name="unLogin">/logonFail.jsp</page>
+		</action>
+		<!-- 所有的 -->
+		<action class="com.cuc.actions.AllRecordOfUser" name="RecordsOfUser">
+			<page type="dispatcher" name="all">/logon/logon.jsp</page>
+		</action>
+		<action name="AddUserIndex">
+			<page>/logon/Manager/addUser.jsp</page>
+		</action>
+		
+		<!-- 增加一个用户 -->
+		<action class="com.cuc.actions.AddUser" name="AddUser">
+			<page type="redirectAction" name="ok">
+				<param name="namespace">/</param>
+				<param name="actionName">AllUser</param>
+			</page>
+		</action>
+		<!-- 所有的用户 -->
+		<action class="com.cuc.actions.AllUser" name="AllUser">
+			<page type="dispatcher" name="ok">/logon/Manager/allUser.jsp</page>
+		</action>
+		<!-- 修改用户状态 -->
+		<action class="com.cuc.actions.UpdateUserStatus" name="UserStatusChange">
+			<page type="redirectAction" name="ok">
+				<param name="namespace">/</param>
+				<param name="actionName">AllUser</param>
+			</page>
+		</action>
+		<!--查看所有实验室-->
+		<action name="AllLab" class="com.cuc.actions.AllLab">
+			<page type="dispatcher" name="ok">
+				/logon/Manager/allLab.jsp
+			</page>
+		</action>
+		<!-- 添加一个新的实验室页面 -->
+		<action name="AddNewLab">
+			<page>/logon/Manager/addLab.jsp</page>
+		</action>
+		<!-- 添加实验室 -->
+		<action name="SAddNewLab" class="com.cuc.actions.AddNewLab">
+			<page type="redirectAction" name="ok">
+				<param name="namespace">/</param>
+				<param name="actionName">AllLab</param>
+			</page>
+		</action>
+		<!-- 添加一个的新的批次 -->
+		<action name="AddNewBatcher">
+			<page>/logon/Manager/addBatcher.jsp</page>
+		</action>
+		<!-- 添加一个批次 -->
+		<action name="SAddNewBatcher" class="com.cuc.actions.AddNewBatcher">
+			<page type="redirectAction" name="ok">
+				<param name="namespace">/</param>
+				<param name="actionName">AddNewBatcher</param>
+			</page>
+		</action>
+		<!-- 获取一个用户的信息 -->
+		<action name="GetUser" class="com.cuc.actions.GetSingleUser">
+			<page type="dispatcher" name="ok">
+				/logon/Manager/UserOutline.jsp
+			</page>
+		</action>
+		<!-- 取得一个特定时间下的时间信息（批次） -->
+		<action name="AjaxLab" class="com.cuc.actions.AjaxLab">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 建立实验室与管理员之间的关系 -->
+		<action name="AddNewLabToAdmin" class="com.cuc.actions.AddNewLabToAdmin">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 添加一个新的量化系数 -->
+		<action name="AddQuantify">
+			<page type="dispatcher" name="ok">
+				/logon/Manager/addQuantify.jsp
+			</page>
+		</action>
+		<!-- 所有的量化系数 -->
+		<action name="AllQuantify" class="com.cuc.actions.AllQuantify">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 添加一个量化 -->
+		<action name="SAddQuantify" class="com.cuc.actions.AddQuantify">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 更新一个量化系数 -->
+		<action name="UpdateQuantify" class="com.cuc.actions.UpdateQuantify">
+			<page type="json" name="ok">
+				<param name="name">result</param>
+			</page>
+		</action>
+		<!-- 为显示量化参数的量化系数 -->
+		<action name="GetInfo" class="com.cuc.actions.GetQuantizationInfo">
+			<page type="dispatcher" name="ok">
+				/logon/Manager/getItsQuantization.jsp
+			</page>
+		</action>
+		<!-- 增加量化系数 -->
+		<action name="AddQuantizationInfo" class="com.cuc.actions.AddQuantizationInfo">
+			<page type="redirectAction" name="ok">
+				<param name="namespace">/</param>
+				<param name="actionName">GetInfo?quantifyID=${quantifyID}</param>
+			</page>
+		</action>
+		<!-- 管理员用户 -->
+		<action name="MModifyPassword">
+			<page>/logon/Manager/pwChange.jsp</page>
+		</action>
+
+		<!-- 一般用户 -->
+		<action name="CModifyPassword">
+			<page>/logon/User/pwChange.jsp</page>
+		</action>
+		<!-- 用户修改密码 -->
+		<action name="SModifyPassword" class="com.cuc.actions.ChangePassword">
+			<page type="dispatcher" name="uok">
+				/logon/User/reminder.jsp
+			</page>
+			<page type="dispatcher" name="mok">
+				/logon/Manager/reminder.jsp
+			</page>
+			<page type="dispatcher" name="mfail">
+				/logon/Manager/pwChange.jsp
+			</page>
+			<page type="dispatcher" name="cfail">
+				/logon/User/pwChange.jsp
+			</page>
+		</action>
+		<!--一般用计算工作量 -->
+		<action name="PreCalculate" class="com.cuc.actions.CalculateWorkload">
+			<page type="dispatcher" name="ok">/logon/User/calculatePre.jsp</page>
+		</action>
+		<!-- 依实验室查看 -->
+		<action name="Workload" class="com.cuc.actions.Workload">
+			<page type="dispatcher" name="ok">/logon/User/workloadLabs.jsp</page>
+		</action>
+		<!-- 依批次获取相应有的量化 -->
+		<action name="GetQuantizationBatcher" class="com.cuc.actions.GetQuantizationBatcher">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 添加常规工作量 -->
+		<action name="AddNewRegularWorkload" class="com.cuc.actions.AddNewRegularWorkload">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 添加课程工作量 -->
+		<action name="AddNewCourseWorkload" class="com.cuc.actions.AddNewCourseWorkload">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 添加维护工作量 -->
+		<action name="AddFixWorkload" class="com.cuc.actions.AddFixWorkload">
+			<page type="json" name="ok">
+				<param name="name">fixList</param>
+			</page>
+		</action>
+		<!-- 添加开放工作量 -->
+		<action name="AddOpenWorkload" class="com.cuc.actions.AddOpenWorkload">
+			<page type="json" name="ok">
+				<param name="name">openList</param>
+			</page>
+		</action>
+		<!-- 添加借用工作量 -->
+		<action name="AddBorrowWorkload" class="com.cuc.actions.AddBorrowWorkload">
+			<page type="json" name="ok">
+				<param name="name">borrowList</param>
+			</page>
+		</action>
+		<!-- 删除常规工作量 -->
+		<action name="DeleteRegularWorkload" class="com.cuc.actions.DeleteRegularWorkload">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 修改常规工作量 -->
+		<action name="UpdateRegularWorkload" class="com.cuc.actions.UpdateRegularWorkload">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 获取id的开放工作量 -->
+		<action name="GetSingleOpenWorkload" class="com.cuc.actions.GetSingleOpenWorkload">
+			<page type="json" name="ok">
+				<param name="name">openWorkload</param>
+			</page>
+		</action>
+		<!--删除开放工作量 -->
+		<action name="DeleteOpenWorkload" class="com.cuc.actions.DeleteOpenWorkload">
+			<page type="json" name="ok">
+				<param name="name">openList</param>
+			</page>
+		</action>
+		<!-- 修改开放工作量 -->
+		<action name="UpdateOpenWorkload" class="com.cuc.actions.UpdateOpenWorkload">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 获取设备借用工作量 -->
+		<action name="GetSingleBorrowWorkload" class="com.cuc.actions.GetSingleBorrowWorkload">
+			<page type="json" name="ok">
+				<param name="name">borrowWorkload</param>
+			</page>
+		</action>
+		<!-- 删除设备借用工作量 -->
+		<action name="DeleteBorrowWorkload" class="com.cuc.actions.DeleteBorrowWorkload">
+			<page type="json" name="ok">
+				<param name="name">borrowList</param>
+			</page>
+		</action>
+		<!-- 修改设备借用工作量 -->
+		<action name="UpdateBorrowWorkload" class="com.cuc.actions.UpdateBorrowWorkload">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 获取设备维护工作量 -->
+		<action name="GetSingleFixBorrowWorkload" class="com.cuc.actions.GetSingleFixBorrowWorkload">
+			<page type="json" name="ok">
+				<param name="name">fixWorkload</param>
+			</page>
+		</action>
+		<!-- 删除维护工作量 -->
+		<action name="DeleteFixWorkload" class="com.cuc.actions.DeleteFixWorkload">
+			<page type="json" name="ok">
+				<param name="name">fixList</param>
+			</page>
+		</action>
+		<!-- 修改设备维护工作量 -->
+		<action name="UpdateFixWorkload" class="com.cuc.actions.UpdateFixWorkload">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!--==================================== 管理员工作量审核=================================-->
+		<!--一般用计算工作量 -->
+		<action name="MPreCalculate" class="com.cuc.actions.CalculateWorkload">
+			<page type="dispatcher" name="ok">/logon/Manager/calculatePre.jsp</page>
+		</action>
+		<!-- 批次关闭 -->
+		<action name="UpdateBatcherStop" class="com.cuc.actions.UpdateBatcherStop">
+			<page type="json" name="ok">
+				<param name="name">batcherList</param>
+			</page>
+		</action>
+		<!-- 批次开启 -->
+		<action name="UpdateBatcherStart" class="com.cuc.actions.UpdateBatcherStart">
+			<page type="json" name="ok">
+				<param name="name">batcherList</param>
+			</page>
+		</action>
+		<!-- 所有的用户 -->
+		<action name="MAllUser" class="com.cuc.actions.AllUser">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 管理员管理其它人员的工作量 -->
+		<action name="MWorkload" class="com.cuc.actions.MWorkload">
+			<page type="dispatcher" name="ok">/logon/Manager/workloadLabs.jsp</page>
+		</action>
+		<!-- 管理员加一个坐班量或加班量 -->
+		<action name="AddDutyWorkload" class="com.cuc.actions.AddDutyWorkload">
+			<page type="json" name="ok">
+				<param name="name">legal</param>
+			</page>
+		</action>
+		<!-- 删除一个坐班量或加班量 -->
+		<action name="DeleteDutyWorkload" class="com.cuc.actions.DeleteDutyWorkload">
+			<page type="json" name="ok">
+				<param name="name">legal</param>
+			</page>
+		</action>
+		<!-- 某用户所有工作量总和 -->
+		<action name="UserTotalWorkload" class="com.cuc.actions.UserTotalWorkload">
+			<page type="json" name="ok">
+				<param name="name">map</param>
+			</page>
+		</action>
+		<!-- 管理员要看的，所有用户的工作量信息 -->
+		<action name="SWorkloadSchema" class="com.cuc.actions.WorkloadSchema">
+			<page type="dispatcher" name="ok">
+				/logon/Manager/workloadSchema.jsp
+			</page>
+		</action>
+		<!-- 普通其它成员要看的 -->
+		<action name="WorkloadSchema" class="com.cuc.actions.WorkloadSchema">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		
+		
+		<!-- 添加一个老师 -->
+		<action name="AddTeacherIndex" class="com.cuc.actions.AllTeacher">
+			<page type="dispatcher" name="ok">/logon/Manager/addTeacherIndex.jsp</page>
+		</action>
+		<!-- 添加一个老师 -->
+		<action name="AddTeacher" class="com.cuc.actions.AddTeacher">
+			<page type="redirectAction" name="ok">
+				<param name="namespace">/</param>
+				<param name="actionName">AddTeacherIndex</param>
+			</page>
+		</action>
+		<!-- 删除一个老师 -->
+		<action name="DeleteTeacher" class="com.cuc.actions.DeleteCourseTeacher">
+			<page type="redirectAction" name="ok">
+				<param name="namespace">/</param>
+				<param name="actionName">AddTeacherIndex</param>
+			</page>
+		</action>
+		<action name="AllTeacherJSON" class="com.cuc.actions.AllTeacher">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		
+		<action name="AllBatcher" class="com.cuc.actions.AllBatcher">
+			<page type="json" name="ok">
+				<param name="name">batcherList</param>
+			</page>
+		</action>
+		
+		
+		<!--查看实验室的课程信息-->
+		<action name="AllCourse" class="com.cuc.actions.AllCourse">
+			<page type="dispatcher" name="ok">
+				/logon/Manager/allCourse.jsp
+			</page>
+		</action>
+		<!--新增课程信息的页面-->
+		<action name="AddCourseInfo">
+			<page>/logon/Manager/addCourseInfo.jsp</page>
+		</action>
+		<!--新增实验室的课程信息-->
+		<action name="SAddCourseInfo" class="com.cuc.actions.AddCourseInfo">
+			<page type="redirectAction" name="ok">
+				<param name="namespace">/</param>
+				<param name="actionName">AllCourse</param>
+			</page>
+		</action>
+		<!-- 找到实验室的课程 -->
+		<action name="GetLabsCourse" class="com.cuc.actions.GetLabsCourse">
+			<page type="json" name="ok">
+				<param name="name">list</param>
+			</page>
+		</action>
+		<!-- 按批次查看课程信息 -->
+		<action name="AllCourseByBatcher" class="com.cuc.actions.AllCourseByBatcher">
+			<page type="dispatcher" name="ok">
+				/logon/Manager/allCourse.jsp
+			</page>
+		</action>
+		<action name="QuantizationInfo" class="com.cuc.actions.GetQuantizationInfoDetail">
+			<page type="json" name="ok">
+				<param name="name">quantization</param>
+			</page>
+		</action>
+		<!-- 更新量化系数值 -->
+		<action name="UpdateQuantizationStandard" class="com.cuc.actions.UpdateQuantizationStandard">
+			<page type="redirectAction" name="ok">
+				<param name="namespace">/</param>
+				<param name="actionName">GetInfo?quantifyID=${quantifyID}</param>
+			</page>
+		</action>
+		<!-- 删除一个关联实验室，当存在外键关系时将不允许删除 -->
+		<action name="DeleteLabToAdmin" class="com.cuc.actions.DeleteLabToAdmin">
+			<page type="redirectAction" name="ok">
+				<param name="namespace">/</param>
+				<param name="actionName">GetUser?id=${adminID}</param>
+			</page>
+		</action>
+	</actions>
+</result>

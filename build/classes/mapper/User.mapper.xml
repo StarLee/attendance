@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.cuc.daos.UserDao" >
+	<select id="getUser" resultType="com.cuc.beans.User">
+		select ID as id,UserName as userName,WorkNum as workNum,Status as status,Type as type,Password as password,Role as priority,Name as name from User where UserName='#{userName}'
+	</select>
+	<insert id="addUser" parameterType="com.cuc.beans.User">
+		insert into User(ID,UserName,Password,Role,WorkNum,Type,Status,Name) values(0,'#{userName}','#{password}','1','#{workNum}','#{type}','#{status}','#{name}') 
+	</insert>
+	<select id="allUser" resultType="com.cuc.beans.User">
+		select ID as id,UserName as userName,Role as priority,Status as status,Name as name from User where Role='1' order by ID DESC
+	</select>
+	<update id="changeStatus" parameterType="com.cuc.beans.User">
+		update User set Status=#{status} where ID=#{id}
+	</update>
+	<update id="changePassword" parameterType="com.cuc.beans.User">
+		update User set Password='#{password}' where ID=#{id}
+	</update>
+	<select id="getSingleUser" resultType="com.cuc.beans.User" parameterType="com.cuc.beans.User">
+		select ID as id,UserName as userName,Role as priority,Status as status,WorkNum as workNum,Type as type,Name as name from User where ID=#{id}
+	</select>
+	
+	<!--
+	<update id="updateCollege" parameterType="com.develop.data.base.mapping.Ds_collegeBean">
+		update Ds_college set college_name='#{collegeName}' where id=#{id}
+	</update>
+	<insert id="insertNew" parameterType="com.develop.data.base.mapping.Ds_collegeBean">
+		insert into Ds_college(college_name,id) values('#{collegeName}',#{id})
+	</insert>
+	<delete id="deleteCollege" parameterType="com.develop.data.base.mapping.Ds_collegeBean">
+		delete from Ds_college where id=#{id}
+	</delete>
+	-->
+</mapper>

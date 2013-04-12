@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.cuc.daos.CourseInfoDao">
+	<insert id="addCourseInfo" parameterType="com.cuc.beans.CourseInfo">
+		insert into
+		CourseInfo(id,courseID,courseName,labName,teacherName,software,weektime)
+		values(0,'#{courseID}','#{courseName}','#{labName}','#{teacherName}','#{software}','#{weektime}')
+	</insert>
+
+	<select id="allCourse" resultType="com.cuc.beans.CourseInfo">
+		select courseID as courseID,courseName as
+		courseName,labName as labName,teacherName as teacherName,software as software,
+		weektime as weektime from CourseInfo
+	</select>
+</mapper>

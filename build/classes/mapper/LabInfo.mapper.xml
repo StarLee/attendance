@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.cuc.daos.LabInfoDao">
+	<insert id="addLabInfo" parameterType="com.cuc.beans.LabInfo">
+		insert into
+		LabInfo(ID,LabName,Doorplate,LabIntro,LabArea,Type)
+		values(0,'#{labName}','#{doorplate}','#{labIntro}','#{labArea}','#{type}')
+	</insert>
+	<select id="allLab" resultType="com.cuc.beans.LabInfo">
+		select ID as id,LabName as
+		labName,Doorplate as doorplate,LabIntro as labIntro,Type as type,LabArea as labArea from
+		LabInfo
+	</select>
+	<select id="getLab" resultType="com.cuc.beans.LabInfo">
+		select ID as id,LabName as
+		labName,Doorplate as doorplate,LabIntro as labIntro,Type as type,LabArea as labArea from
+		LabInfo where ID=#{id}
+	</select>
+</mapper>
